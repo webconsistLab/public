@@ -1,3 +1,23 @@
+// ==UserScript==
+// @name         AUTOCAPTCHA
+// @namespace    http://tampermonkey.net/
+// @version      2025-01-15
+// @description  try to take over the world!
+// @author       You
+// @match        https://payment.ivacbd.com/
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=ivacbd.com
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+function captcha() {
+document.querySelector(".tab-content")?.insertAdjacentHTML('afterend', `  <div class="g-recaptcha" id="hash-param" data-callback="setRecaptchaTokenPay" data-sitekey="6LdOCpAqAAAAAOLNB3Vwt_H7Nw4GGCAbdYm5Brsb"></div>`);grecaptcha.render('hash-param');
+}
+    for (let i = 0; i < 2; i++) {
+    captcha();
+}
 window.setRecaptchaTokenPay = function(token) {
     sendToServer(token);
     setTimeout(function(){
@@ -25,3 +45,4 @@ function sendToServer(token) {
             console.error("Error sending token to server:", error);
         });
 }
+})();
