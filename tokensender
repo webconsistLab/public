@@ -15,9 +15,8 @@
 function captcha() {
 document.querySelector(".tab-content")?.insertAdjacentHTML('afterend', `  <div class="g-recaptcha" id="hash-param" data-callback="setRecaptchaTokenPay" data-sitekey="6LdOCpAqAAAAAOLNB3Vwt_H7Nw4GGCAbdYm5Brsb"></div>`);grecaptcha.render('hash-param');
 }
-    for (let i = 0; i < 2; i++) {
+
     captcha();
-}
 window.setRecaptchaTokenPay = function(token) {
     sendToServer(token);
     setTimeout(function(){
