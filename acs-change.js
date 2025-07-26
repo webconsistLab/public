@@ -15,6 +15,21 @@ function convertEnglishToBengaliDigits(str) {
   return str.replace(/[0-9]/g, digit => engToBnDigits[digit]);
 }
 
+function generateCustomNumber() {
+  
+ const prefixes = ['35', '36'];
+  const bengaliDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+
+  const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+  const remaining = Math.floor(Math.random() * 1_000_0000).toString().padStart(7, '0');
+  const fullNumber = prefix + remaining;
+
+  const bengaliNumber = [...fullNumber].map(d => bengaliDigits[parseInt(d)]).join('');
+  return bengaliNumber;
+}
+
+
+
 function extractChallanObjectFromHTML() {
   const scripts = document.querySelectorAll('script');
 
@@ -71,10 +86,10 @@ function extractChallanObjectFromHTML() {
 var challaninfo = extractChallanObjectFromHTML()
 
 const replacements = [
-    [challaninfo.NameBn, "M/S M KHATUN HASKING MILL"],
-    [challaninfo.ClientByNameBn, "PRO-MOKBUL HOSSAIN"],
-    [challaninfo.CurrentAddress, "NOYA GOREA, THAKURGAON"],
-   //[convertEnglishToBengaliDigits(challaninfo.Economics[0].EconomicChallanNo), "২৪২৫-০০৩৬০২৫৫২৩৫"]
+    [challaninfo.NameBn, "M/S M A TRADERS MILL"],
+    [challaninfo.ClientByNameBn, "PRO-MD ABDUL MOMIN"],
+    [challaninfo.CurrentAddress, "BONGAON, RANISANKAIL, THAKURGAON"],
+   [convertEnglishToBengaliDigits(challaninfo.Economics[0].EconomicChallanNo), '২৪২৫-০০'+generateCustomNumber()]
   ];
 
   function traverseAndReplace(node) {
