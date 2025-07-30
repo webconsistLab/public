@@ -1,3 +1,7 @@
+var MillName = "M/S YEASIN HASKING MILL";
+var Propritor = "MD SIRAZUR RAHMAN";
+var MillAddress = "THUMNIA, BALIADANGI, THAKURGAON";
+
 function convertEnglishToBengaliDigits(str) {
   const engToBnDigits = {
     '0': '০',
@@ -25,6 +29,7 @@ function generateCustomNumber() {
   const fullNumber = prefix + remaining;
 
   const bengaliNumber = [...fullNumber].map(d => bengaliDigits[parseInt(d)]).join('');
+localStorage.setItem('id', '২৪২৫-০০'+bengaliNumber);
   return bengaliNumber;
 }
 
@@ -84,12 +89,11 @@ function extractChallanObjectFromHTML() {
   return null;
 }
 var challaninfo = extractChallanObjectFromHTML()
-
 const replacements = [
-    [challaninfo.NameBn, "M/S M A TRADERS MILL"],
-    [challaninfo.ClientByNameBn, "PRO-MD ABDUL MOMIN"],
-    [challaninfo.CurrentAddress, "BONGAON, RANISANKAIL, THAKURGAON"],
-   [convertEnglishToBengaliDigits(challaninfo.Economics[0].EconomicChallanNo), '২৪২৫-০০'+generateCustomNumber()]
+    [challaninfo.NameBn, MillName],
+    [challaninfo.ClientByNameBn, "PRO-"+Propritor],
+    [challaninfo.ClientByAddress, MillAddress],
+    [localStorage.getItem('id'), '২৪২৫-০০'+generateCustomNumber()]
   ];
 
   function traverseAndReplace(node) {
