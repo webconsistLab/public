@@ -1,6 +1,6 @@
-var MillName = "M/S YEASIN HASKING MILL";
-var Propritor = "MD SIRAZUR RAHMAN";
-var MillAddress = "THUMNIA, BALIADANGI, THAKURGAON";
+var MillName = "M/S OHAB HASKING MILL";
+var Propritor = "MD HUMAYUN KABIR";
+var MillAddress = "Thakurgaon Sadar, Thakurgaon";
 
 function convertEnglishToBengaliDigits(str) {
   const engToBnDigits = {
